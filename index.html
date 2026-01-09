@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Битекс-Сибирь</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #171821 0, #050509 55%, #020308 100%);
+        color: #f5f5f7;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .app-shell {
+        flex: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px 16px 96px;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #181927, #10111b);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        box-shadow:
+          0 18px 55px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.01);
+        margin-bottom: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 11px;
+        background: conic-gradient(
+          from 210deg,
+          #ffb347,
+          #ff6b6b,
+          #a855f7,
+          #22d3ee,
+          #ffb347
+        );
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25),
+          0 0 26px rgba(168, 85, 247, 0.7);
+      }
+
+      .brand-text h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.03em;
+      }
+
+      .brand-text p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: rgba(229, 231, 235, 0.72);
+      }
+
+      .top-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .pill {
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pill-green {
+        background: rgba(34, 197, 94, 0.12);
+        border: 1px solid rgba(34, 197, 94, 0.6);
+        color: #bbf7d0;
+      }
+
+      .pill-outline {
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        color: rgba(209, 213, 219, 0.86);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1fr);
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .section-header h2 {
+        margin: 0 0 4px;
+        font-size: 18px;
+      }
+
+      .section-header p {
+        margin: 0;
+        font-size: 13px;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      .category-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(31, 41, 55, 0.5);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .category-filters::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-btn {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        background: rgba(15, 23, 42, 0.6);
+        color: rgba(209, 213, 219, 0.9);
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.16s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .filter-btn:hover {
+        border-color: rgba(148, 163, 184, 0.7);
+        background: rgba(15, 23, 42, 0.9);
+      }
+
+      .filter-btn.active {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        border-color: rgba(34, 197, 94, 0.8);
+        color: #ecfdf5;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+      }
+
+      .product-grid {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .category-header {
+        margin: 0 0 16px;
+        font-size: 18px;
+        font-weight: 600;
+        color: rgba(226, 232, 240, 0.95);
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgba(148, 163, 184, 0.3);
+      }
+
+      .category-products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 14px;
+      }
+
+      .product-card {
+        background: radial-gradient(circle at top left, #262840, #171725);
+        border-radius: 16px;
+        padding: 10px 10px 12px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.85);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(94, 234, 212, 0.7);
+        box-shadow:
+          0 18px 45px rgba(15, 23, 42, 0.95),
+          0 0 0 1px rgba(94, 234, 212, 0.35);
+        background: radial-gradient(circle at top left, #303456, #191a2a);
+      }
+
+      .product-image {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        background: radial-gradient(circle at 10% 0, #38bdf8, #0f172a);
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          145deg,
+          rgba(248, 250, 252, 0.16),
+          transparent 45%,
+          transparent
+        );
+      }
+
+      .product-image span {
+        position: relative;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(226, 232, 240, 0.88);
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+      }
+
+      .product-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .product-name {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .product-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 6px;
+      }
+
+      .product-price {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .product-unit {
+        font-size: 11px;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      .product-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      .qty-pill {
+        min-width: 72px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        padding: 3px 8px;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: rgba(209, 213, 219, 0.9);
+      }
+
+      .qty-pill span {
+        opacity: 0.6;
+      }
+
+      .qty-pill strong {
+        font-weight: 600;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        transition:
+          background 0.16s ease,
+          box-shadow 0.16s ease,
+          transform 0.08s ease,
+          color 0.16s ease,
+          border-color 0.16s ease;
+      }
+
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: default;
+        box-shadow: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #ecfdf5;
+        box-shadow: 0 10px 32px rgba(34, 197, 94, 0.45);
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        background: linear-gradient(135deg, #4ade80, #16a34a);
+        box-shadow:
+          0 14px 35px rgba(34, 197, 94, 0.7),
+          0 0 0 1px rgba(16, 185, 129, 0.7);
+        transform: translateY(-1px);
+      }
+
+      .btn-accent {
+        background: linear-gradient(135deg, #0ea5e9, #6366f1);
+        color: #ecfeff;
+        box-shadow: 0 14px 40px rgba(59, 130, 246, 0.6);
+      }
+
+      .btn-accent:hover:not(:disabled) {
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        box-shadow:
+          0 16px 45px rgba(37, 99, 235, 0.8),
+          0 0 0 1px rgba(59, 130, 246, 0.7);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: rgba(15, 23, 42, 0.9);
+        color: rgba(226, 232, 240, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.7);
+      }
+
+      .btn-secondary:hover:not(:disabled) {
+        background: rgba(15, 23, 42, 1);
+        border-color: rgba(148, 163, 184, 1);
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
+      }
+
+      .btn-success {
+        background: radial-gradient(circle at top left, #22c55e, #16a34a);
+        color: #ecfdf3;
+        box-shadow: 0 14px 34px rgba(22, 163, 74, 0.7);
+      }
+
+      .btn-success:hover:not(:disabled) {
+        background: radial-gradient(circle at top left, #4ade80, #16a34a);
+        box-shadow:
+          0 16px 40px rgba(22, 163, 74, 0.9),
+          0 0 0 1px rgba(22, 163, 74, 0.9);
+        transform: translateY(-1px);
+      }
+
+      .cart-toggle-btn {
+        display: none;
+        position: fixed;
+        bottom: 80px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        border: none;
+        color: #ecfdf5;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 10px 32px rgba(34, 197, 94, 0.6);
+        z-index: 40;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .cart-toggle-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 14px 40px rgba(34, 197, 94, 0.8);
+      }
+
+      .cart-toggle-btn .cart-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+      }
+
+      .cart-panel {
+        background: linear-gradient(145deg, #080814, #05060d);
+        border-radius: 18px;
+        padding: 14px 14px 12px;
+        border: 1px solid rgba(55, 65, 81, 0.9);
+        box-shadow:
+          0 16px 40px rgba(15, 23, 42, 1),
+          0 0 0 1px rgba(15, 23, 42, 0.9);
+        position: sticky;
+        top: 16px;
+      }
+
+      .cart-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .cart-header h2 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .cart-count {
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        background: rgba(37, 99, 235, 0.18);
+        color: #bfdbfe;
+      }
+
+      .cart-items {
+        max-height: 320px;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+
+      .cart-items.empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 8px;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      .cart-empty-text {
+        margin: 0;
+        font-size: 13px;
+      }
+
+      .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 4px;
+        border-bottom: 1px dashed rgba(31, 41, 55, 0.9);
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .cart-item-main {
+        flex: 1;
+      }
+
+      .cart-item-name {
+        font-size: 13px;
+      }
+
+      .cart-item-meta {
+        margin-top: 2px;
+        font-size: 11px;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      .cart-item-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+      }
+
+      .cart-qty {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+      }
+
+      .cart-qty button {
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        border: 1px solid rgba(75, 85, 99, 0.9);
+        background: rgba(15, 23, 42, 0.9);
+        color: rgba(209, 213, 219, 0.9);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        padding: 0;
+      }
+
+      .cart-qty button:hover {
+        border-color: rgba(156, 163, 175, 0.9);
+      }
+
+      .cart-item-price {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .cart-footer {
+        margin-top: 12px;
+        border-top: 1px solid rgba(31, 41, 55, 0.9);
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .cart-total-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+
+      .cart-total-amount {
+        font-weight: 600;
+      }
+
+      .bottom-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px 12px 12px;
+        background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98), #020617);
+        border-top: 1px solid rgba(30, 64, 175, 0.8);
+        box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 30;
+      }
+
+      .bottom-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .summary-text {
+        font-size: 13px;
+        color: rgba(203, 213, 225, 0.98);
+      }
+
+      .summary-text strong {
+        color: #e5e7eb;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.82);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+      }
+
+      .modal-backdrop.hidden {
+        display: none;
+      }
+
+      .modal {
+        width: min(480px, 100% - 32px);
+        max-height: calc(100vh - 80px);
+        background: radial-gradient(circle at top left, #111827, #020617);
+        border-radius: 20px;
+        border: 1px solid rgba(75, 85, 99, 0.9);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.95),
+          0 0 0 1px rgba(15, 23, 42, 0.9);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal-header {
+        padding: 14px 18px 10px;
+        border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .icon-btn {
+        border: none;
+        background: transparent;
+        color: rgba(148, 163, 184, 0.95);
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .modal-body {
+        padding: 12px 18px 8px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 12px;
+        overflow-y: auto;
+      }
+
+      .order-summary h4,
+      .payment-block h4 {
+        margin: 0 0 8px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(148, 163, 184, 0.95);
+      }
+
+      .order-summary-list {
+        border-radius: 12px;
+        border: 1px dashed rgba(55, 65, 81, 0.95);
+        padding: 8px 10px;
+        max-height: 210px;
+        overflow-y: auto;
+        font-size: 12px;
+      }
+
+      .order-summary-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 4px 0;
+      }
+
+      .order-summary-item span:nth-child(2) {
+        white-space: nowrap;
+      }
+
+      .order-summary-total {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .qr-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
+      }
+
+      .qr-placeholder {
+        width: 150px;
+        height: 150px;
+        border-radius: 14px;
+        border: 2px dashed rgba(148, 163, 184, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: rgba(148, 163, 184, 0.95);
+        background: radial-gradient(circle at top, #1f2937, #020617);
+      }
+
+      .payment-text {
+        margin-top: 10px;
+        font-size: 12px;
+        color: rgba(148, 163, 184, 0.95);
+      }
+
+      .modal-footer {
+        padding: 12px 18px 14px;
+        border-top: 1px solid rgba(31, 41, 55, 0.9);
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        html,
+        body {
+          background: radial-gradient(circle at top, #171821 0, #050509 55%, #020308 100%);
+        }
+
+        .app-shell {
+          padding: 10px 10px 140px;
+        }
+
+        .layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .cart-panel {
+          position: fixed;
+          bottom: 80px;
+          left: 0;
+          right: 0;
+          top: auto;
+          max-height: calc(100vh - 160px);
+          border-radius: 18px 18px 0 0;
+          transform: translateY(calc(100% - 60px));
+          transition: transform 0.3s ease;
+          z-index: 35;
+          margin: 0;
+          border-left: none;
+          border-right: none;
+          border-top: 1px solid rgba(55, 65, 81, 0.9);
+          overflow-y: auto;
+        }
+
+        .cart-panel.open {
+          transform: translateY(0);
+        }
+
+        .cart-close-btn {
+          display: flex !important;
+        }
+
+        .cart-header {
+          position: relative;
+        }
+
+        .cart-toggle-btn {
+          display: flex;
+        }
+
+        .top-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 12px 14px;
+        }
+
+        .top-actions {
+          flex-wrap: wrap;
+        }
+
+        .category-filters {
+          gap: 6px;
+          padding-bottom: 12px;
+          margin-bottom: 16px;
+        }
+
+        .filter-btn {
+          padding: 6px 12px;
+          font-size: 11px;
+        }
+
+        .category-products {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+
+        .product-card {
+          padding: 8px;
+        }
+
+        .product-image {
+          height: 100px;
+        }
+
+        .product-name {
+          font-size: 13px;
+        }
+
+        .product-price {
+          font-size: 14px;
+        }
+
+        .btn {
+          padding: 7px 12px;
+          font-size: 12px;
+        }
+
+        .modal-body {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .bottom-bar {
+          padding: 10px 10px 12px;
+        }
+
+        .bottom-inner {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .summary-text {
+          font-size: 12px;
+          text-align: center;
+        }
+
+        #telegram-order-btn {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .category-products {
+          grid-template-columns: 1fr;
+        }
+
+        .app-shell {
+          padding: 8px 8px 140px;
+        }
+
+        .top-bar {
+          padding: 10px 12px;
+        }
+
+        .brand-text h1 {
+          font-size: 18px;
+        }
+
+        .brand-text p {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <div class="brand-text">
+            <h1>Битекс-Сибирь</h1>
+            <p>Российский завод‑производитель красок, штукатурок и грунтовок</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <span class="pill pill-green">В наличии</span>
+          <span class="pill pill-outline">Быстрая доставка</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="catalog">
+          <div class="section-header">
+            <h2>Товары и услуги</h2>
+            <p>Выберите краски и шпаклёвки и отправьте заказ в Telegram.</p>
+          </div>
+          <div class="category-filters">
+            <button class="filter-btn active" data-category="all">Все товары</button>
+            <button class="filter-btn" data-category="Штукатурка декоративная">Штукатурка декоративная</button>
+            <button class="filter-btn" data-category="Краска декоративная фактурная">Краска декоративная фактурная</button>
+            <button class="filter-btn" data-category="Краска для стен и потолка">Краска для стен и потолка</button>
+            <button class="filter-btn" data-category="Краска интерьерная">Краска интерьерная</button>
+            <button class="filter-btn" data-category="Краска фасадная">Краска фасадная</button>
+            <button class="filter-btn" data-category="Грунтовка 'Бетоноконтакт'">Грунтовка 'Бетоноконтакт'</button>
+            <button class="filter-btn" data-category="Грунтовка глубокого проникновения">Грунтовка глубокого проникновения</button>
+            <button class="filter-btn" data-category="Грунтовка под декоративные покрытия и штукатурки">Грунтовка под декоративные покрытия</button>
+          </div>
+          <div id="product-grid" class="product-grid">
+            <!-- Карточки заполняются через JS -->
+          </div>
+        </section>
+
+        <button id="cart-toggle-btn" class="cart-toggle-btn" aria-label="Открыть корзину">
+          🛒
+          <span class="cart-badge" id="cart-toggle-badge">0</span>
+        </button>
+        <aside class="cart-panel" id="cart-panel">
+          <div class="cart-header">
+            <h2>Корзина</h2>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="cart-count" class="cart-count">0</span>
+              <button class="cart-close-btn" id="cart-close-btn" style="display: none; background: transparent; border: none; color: rgba(148, 163, 184, 0.9); font-size: 20px; cursor: pointer; padding: 0; width: 24px; height: 24px; align-items: center; justify-content: center; line-height: 1;">×</button>
+            </div>
+          </div>
+          <div id="cart-items" class="cart-items empty">
+            <p class="cart-empty-text">Ваша корзина пуста.</p>
+          </div>
+          <div class="cart-footer">
+            <div class="cart-total-row">
+              <span>Итого</span>
+              <span id="cart-total" class="cart-total-amount">0 ₽</span>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary" disabled>
+              Открыть форму заказа
+            </button>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <footer class="bottom-bar">
+      <div class="bottom-inner">
+        <div class="summary-text">
+          <span id="bottom-cart-summary">Товары не выбраны</span>
+        </div>
+        <button id="telegram-order-btn" class="btn btn-accent">
+          Оформить заказ в Telegram
+        </button>
+      </div>
+    </footer>
+
+    <!-- Модальное окно: заказ и оплата -->
+    <div id="order-modal" class="modal-backdrop hidden" aria-hidden="true">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Заказ и оплата</h3>
+          <button id="modal-close-btn" class="icon-btn" aria-label="Закрыть">
+            ×
+          </button>
+        </div>
+        <div class="modal-body">
+          <section class="order-summary">
+            <h4>Состав заказа</h4>
+            <div id="order-summary-list" class="order-summary-list">
+              <!-- Заполняется через JS -->
+            </div>
+            <div class="order-summary-total">
+              <span>Итого:</span>
+              <span id="order-summary-total">0 ₽</span>
+            </div>
+          </section>
+
+          <section class="payment-block">
+            <h4>Оплата через СБП</h4>
+            <div class="qr-wrapper">
+              <div class="qr-placeholder">
+                <span>QR</span>
+              </div>
+            </div>
+            <p class="payment-text">
+              Отсканируйте QR‑код в приложении банка и оплатите заказ по СБП.
+            </p>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-telegram-btn" class="btn btn-secondary">
+            Открыть Telegram с заказом
+          </button>
+          <button id="modal-paid-btn" class="btn btn-success">
+            Оплачено
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
