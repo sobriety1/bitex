@@ -2,7 +2,7 @@
 
 // Массив товаров
 var products = [
-  { id: "p1", name: "Товар 1", category: "Штукатурка декоративная", price: 0, unit: "мешок", image: "images/placeholder.jpg" },
+  { id: "p1", name: "Acryl Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p2", name: "Товар 2", category: "Краска декоративная фактурная", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
   { id: "p3", name: "Товар 3", category: "Краска для стен и потолка", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
   { id: "p4", name: "Товар 4", category: "Краска интерьерная", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
@@ -295,7 +295,6 @@ function init() {
         };
       }(category);
       // Также добавляем touch события для мобильных
-      btn.ontouchstart = btn.onclick;
     }
   }
   
@@ -309,3 +308,4 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+
