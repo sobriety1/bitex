@@ -68,54 +68,31 @@ function renderProducts(filter) {
     return;
   }
   
-  var groups = {};
   for (var i = 0; i < filteredProducts.length; i++) {
     var product = filteredProducts[i];
-    if (!groups[product.category]) {
-      groups[product.category] = [];
-    }
-    groups[product.category].push(product);
-  }
-  
-  var categories = Object.keys(groups);
-  for (var i = 0; i < categories.length; i++) {
-    var category = categories[i];
+    var qty = cart[product.id] || 0;
     
-    // 1. Создаем заголовок категории
-    var header = document.createElement("h3");
-    header.className = "category-header";
-    header.textContent = category;
-    productGrid.appendChild(header);
+    var card = document.createElement("article");
+    card.className = "product-card";
     
-    // 2. Создаем контейнер-сетку для товаров ЭТОЙ категории
-    var grid = document.createElement("div");
-    grid.className = "products-grid"; // Важно: используем это имя для CSS
+    var cardHTML = '<div class="product-image">';
+    cardHTML += '<img src="' + product.image + '" alt="' + product.name + '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">';
+    cardHTML += '<div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:radial-gradient(circle at 10% 0, #38bdf8, #0f172a);"><span>ФОТО</span></div>';
+    cardHTML += '</div>';
+    cardHTML += '<div class="product-content">';
+    cardHTML += '<div class="product-name">' + product.name + '</div>';
+    cardHTML += '<div class="product-meta">';
+    cardHTML += '<div class="product-price">' + formatPrice(product.price) + '</div>';
+    cardHTML += '<div class="product-unit">' + product.unit + '</div>';
+    cardHTML += '</div>';
+    cardHTML += '<div class="product-actions">';
+    cardHTML += '<div class="qty-pill"><span>В корзине</span><strong id="qty-' + product.id + '">' + qty + '</strong></div>';
+    cardHTML += '<button class="btn btn-primary add-to-cart-btn" data-product-id="' + product.id + '">В корзину</button>';
+    cardHTML += '</div>';
+    cardHTML += '</div>';
     
-    var categoryProducts = groups[category];
-    for (var j = 0; j < categoryProducts.length; j++) {
-      var product = categoryProducts[j];
-      var qty = cart[product.id] || 0;
-      
-      var card = document.createElement("article");
-      card.className = "product-card";
-      
-      // Формируем внутренности карточки
-      var cardHTML = '<img src="' + product.image + '" class="product-img" alt="' + product.name + '">';
-      cardHTML += '<div class="product-name">' + product.name + '</div>';
-      cardHTML += '<div class="product-price">' + formatPrice(product.price) + ' / ' + product.unit + '</div>';
-      
-      // Блок управления корзиной
-      cardHTML += '<div class="product-actions">';
-      cardHTML += '<button class="btn-add" onclick="addToCart(\'' + product.id + '\')">В корзину</button>';
-      cardHTML += '</div>';
-      
-      card.innerHTML = cardHTML;
-      grid.appendChild(card);
-    }
-    
-    // Добавляем сетку с товарами в общий каталог
-    productGrid.appendChild(grid);
-  }
+    card.innerHTML = cardHTML;
+    productGrid.appendChild(card);
   }
   
   // Добавляем обработчики на кнопки "В корзину"
@@ -131,7 +108,7 @@ function renderProducts(filter) {
       }(productId);
     }
   }
-
+}
 
 // Функция обновления активных кнопок фильтра
 function updateFilterButtons() {
