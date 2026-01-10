@@ -3,10 +3,10 @@
 // Массив товаров
 var products = [
   { id: "p1", name: "Acryl Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p2", name: "Товар 2", category: "Краска декоративная фактурная", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
-  { id: "p3", name: "Товар 3", category: "Краска для стен и потолка", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
-  { id: "p4", name: "Товар 4", category: "Краска интерьерная", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
-  { id: "p5", name: "Товар 5", category: "Краска фасадная", price: 0, unit: "ведро", image: "images/placeholder.jpg" },
+  { id: "p2", name: "Acryl Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p3", name: "Silikon Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p4", name: "Silikon Reibeputz (Farbe)", category: "Штукатарука декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p5", name: "Silikon Art Beton (Farbe)", category: "Штукатурка декоративная", price: 4190, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p6", name: "Товар 6", category: "Грунтовка 'Бетоноконтакт'", price: 0, unit: "канистра", image: "images/placeholder.jpg" },
   { id: "p7", name: "Товар 7", category: "Грунтовка глубокого проникновения", price: 0, unit: "канистра", image: "images/placeholder.jpg" },
   { id: "p8", name: "Товар 8", category: "Грунтовка под декоративные покрытия и штукатурки", price: 0, unit: "канистра", image: "images/placeholder.jpg" }
