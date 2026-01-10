@@ -10,7 +10,26 @@ var products = [
   { id: "p6", name: "Silikon Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 7800, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p7", name: "Siloxan Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 6250, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p8", name: "Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 5000, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p9", name: "Decor (Günstig)", category: "Краска декоративная фактурная", price: 2682, unit: "шт.", image: "images/placeholder.jpg" }
+  { id: "p9", name: "Decor (Günstig)", category: "Краска декоративная фактурная", price: 2682, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p10", name: "Acryl Wand (Günstig)", category: "Краска для стен и потолка", price: 1689, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p11", name: "Acryl Wand (Farbe)", category: "Краска для стен и потолка", price: 5915, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p12", name: "Silikon Wand (Farbe)", category: "Краска для стен и потолка", price: 6390, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p13", name: "Wand Trend (Farbe)", category: "Краска для стен и потолка", price: 1500, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p14", name: "Super Wand Trend (Farbe)", category: "Краска интерьерная", price: 15000, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p15", name: "Acryl Premium Wand (Farbe)", category: "Краска интерьерная", price: 5915, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p16", name: "Silikon Premium Wand (Farbe)", category: "Краска интерьерная", price: 6390, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p17", name: "Interior (Günstig)", category: "Краска интерьерная", price: 2935, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p18", name: "Silikon Fassaden (Farbe)", category: "Краска фасадная", price: 8000, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p19", name: "Acryl Fassaden (Farbe)", category: "Краска фасадная", price: 5100, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p20", name: "Acryl Fassad (Günstig)", category: "Краска фасадная", price: 2600, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p21", name: "Бетоноконтакт Кварц Грунт (Farbe)", category: "Грунтовка 'Бетоноконтакт'", price: 1590, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p22", name: "Бетоноконтакт (Gunstig)", category: "Грунтовка 'Бетоноконтакт'", price: 1200, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p23", name: "Tiefgrund LF (Farbe)", category: "Грунтовка глубокого проникновения", price: 1000, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p24", name: "Tiefgrund (Günstig)", category: "Грунтовка глубокого проникновения", price: 500, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p25", name: "Silikon Quarzgrund (Farbe)", category: "Грунтовка под декоративные покрытия и штукатурки", price: 2685, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p26", name: "Acryl Quarzgrund (Farbe)", category: "Грунтовка под декоративные покрытия и штукатурки", price: 2045, unit: "шт.", image: "images/placeholder.jpg" },
+  
+  
 ];
 
 // Корзина
