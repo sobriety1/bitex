@@ -2,11 +2,11 @@
 
 // Массив товаров
 var products = [
-  { id: "p1", name: "Acryl Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p2", name: "Acryl Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p3", name: "Silikon Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p4", name: "Silikon Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p5", name: "Silikon Art Beton (Farbe)", category: "Штукатурка декоративная", price: 4190, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p1", name: "Acryl Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/p1.png" },
+  { id: "p2", name: "Acryl Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/p2.png" },
+  { id: "p3", name: "Silikon Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/p3.png" },
+  { id: "p4", name: "Silikon Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/p4.png" },
+  { id: "p5", name: "Silikon Art Beton (Farbe)", category: "Штукатурка декоративная", price: 4190, unit: "шт.", image: "images/p5.png" },
   { id: "p6", name: "Silikon Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 7800, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p7", name: "Siloxan Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 6250, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p8", name: "Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 5000, unit: "шт.", image: "images/placeholder.jpg" },
