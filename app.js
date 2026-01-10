@@ -5,11 +5,12 @@ var products = [
   { id: "p1", name: "Acryl Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p2", name: "Acryl Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 4500, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p3", name: "Silikon Kratzputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p4", name: "Silikon Reibeputz (Farbe)", category: "Штукатарука декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p4", name: "Silikon Reibeputz (Farbe)", category: "Штукатурка декоративная", price: 5500, unit: "шт.", image: "images/placeholder.jpg" },
   { id: "p5", name: "Silikon Art Beton (Farbe)", category: "Штукатурка декоративная", price: 4190, unit: "шт.", image: "images/placeholder.jpg" },
-  { id: "p6", name: "Товар 6", category: "Грунтовка 'Бетоноконтакт'", price: 0, unit: "канистра", image: "images/placeholder.jpg" },
-  { id: "p7", name: "Товар 7", category: "Грунтовка глубокого проникновения", price: 0, unit: "канистра", image: "images/placeholder.jpg" },
-  { id: "p8", name: "Товар 8", category: "Грунтовка под декоративные покрытия и штукатурки", price: 0, unit: "канистра", image: "images/placeholder.jpg" }
+  { id: "p6", name: "Silikon Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 7800, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p7", name: "Siloxan Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 6250, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p8", name: "Roll&Kellenputz (Farbe)", category: "Краска декоративная фактурная", price: 5000, unit: "шт.", image: "images/placeholder.jpg" },
+  { id: "p9", name: "Decor (Günstig)", category: "Краска декоративная фактурная", price: 2682, unit: "шт.", image: "images/placeholder.jpg" }
 ];
 
 // Корзина
